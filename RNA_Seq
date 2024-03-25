@@ -1,8 +1,12 @@
 --fastqc
+fastqc input.fastq
+
+--fastp trimming adapters
+fastp -i input.fastq -o output.fastq 
 
 --bowtie Indexing and alignment
 bowtie2-build abc_Genome.fasta abc_genome_indexed
-bowtie2 -x mtb_genome_indexed -1 ERR_Forward.fastq -2 ERR_Reverse.fastq -S output.sam
+bowtie2 -x abc_genome_indexed -1 output_Forward.fastq -2 output_Reverse.fastq -S output.sam
 
 --sam to bam
 samtools view -S -b output.sam > output.bam
