@@ -1,0 +1,23 @@
+--bowtie Indexing and alignment
+bowtie2-build MtbH37Rv_Genome mtb_genome_indexed
+bowtie2 -x mtb_genome_indexed -1 ERR_Forward.fastq -2 ERR_Reverse.fastq -S output.sam
+
+--sam to bam
+samtools view -S -b sample.sam > sample.bam
+
+
+--sorting bam file
+samtools sort output.bam -o output_sorted.bam
+
+
+--indexing bam file
+samtools index sample.sorted.bam
+
+
+To convert gff to .bed
+convert2bed --input=gtf --output=bed < GCF_000195955.2_ASM19595v2_genomic.gtf > mtb_gff.bed
+
+
+To map .bam to .bed
+bedtools multicov -bams fwd.bam -bed mtb_completeGenome.bed > fwd.bed
+bedtools multicov -bams rev.bam -bed mtb_completeGenome.bed > rev.bed
