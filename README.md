@@ -1,3 +1,5 @@
+**RNA-Seq Pipeline
+**
 This pipeline script includes a series of commands for processing Next Generation Sequencing (NGS) data (here, RNA-Seq). The script automates the following steps:
 
     FastQC: Performs quality control checks on raw sequencing data.
